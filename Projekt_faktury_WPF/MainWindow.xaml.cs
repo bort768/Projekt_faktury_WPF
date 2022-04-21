@@ -27,5 +27,10 @@ namespace Projekt_faktury_WPF
 
             
         }
+
+        private void Button_Close_App(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

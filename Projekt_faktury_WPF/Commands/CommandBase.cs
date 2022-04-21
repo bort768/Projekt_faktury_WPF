@@ -7,20 +7,31 @@ using System.Windows.Input;
 
 namespace Projekt_faktury_WPF.Commands
 {
-    public abstract class CommandBase : ICommand
+    public class CommandBase : ICommand
     {
-        public event EventHandler? CanExecuteChanged;
+        private Action<object> _execute;
+        private Func<object, bool> _canExecute;
 
-        public bool CanExecute(object? parameter)
+        public event EventHandler CanExecuteChanged
         {
-            return true;
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public abstract void Execute(object? parameter);
-
-        protected void OnCanExecutedChanged()
+        public bool CanExecute(object parameter)
         {
-            CanExecuteChanged?.Invoke(this, new EventArgs());
+            return _canExecute == null || _canExecute(parameter);
+        }
+
+        public void Execute(object parameter)
+        {
+            _execute(parameter);
+        }
+
+        public CommandBase(Action<object> execute, Func<object, bool> canExecute = null)
+        {
+            _execute = execute;
+            _canExecute = canExecute;
         }
         
     }

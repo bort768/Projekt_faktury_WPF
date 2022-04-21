@@ -123,7 +123,7 @@ namespace Projekt_faktury_WPF.ViewModels
 
 
 
-        public MakeBussinesViewModel(Firma firma)
+        public MakeBussinesViewModel()
         {
 
         }

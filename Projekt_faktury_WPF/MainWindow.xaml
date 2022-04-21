@@ -5,12 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt_faktury_WPF" 
         xmlns:views="clr-namespace:Projekt_faktury_WPF.Views"
+        xmlns:viewModel="clr-namespace:Projekt_faktury_WPF.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="920"
         WindowStyle="None"
         ResizeMode="NoResize" 
         Background="Transparent"
         AllowsTransparency="True">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
     <Border Background="#272537"
             CornerRadius="20">
         <Grid>
@@ -36,13 +41,15 @@
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             Style="{StaticResource RadioButtonStyle}"/>
+                             Style="{StaticResource RadioButtonStyle}"
+                             Command="{Binding MakeBussinesCommand}"/>
                 
                 <RadioButton Content="Company Data"
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             Style="{StaticResource RadioButtonStyle}"/>
+                             Style="{StaticResource RadioButtonStyle}"
+                             Command="{Binding BossDataCommand}"/>
                 
                 <RadioButton Content="Boss Data"
                              Height="50"
@@ -51,6 +58,23 @@
                              Style="{StaticResource RadioButtonStyle}"/>
             </StackPanel>
 
+            <Button x:Name="Close_Button"
+                    Grid.Column="1"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Width="30"
+                    Height="30"
+                    Content="X"
+                    FontSize="20"
+                    VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    Background="Crimson" 
+                    Click="Button_Close_App"/>
+
+            <ContentControl Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10"
+                            Content="{Binding CurrentView}"/>
         </Grid>
         
         

@@ -2,13 +2,24 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Projekt_faktury_WPF"
-             
+             xmlns:viewModel="clr-namespace:Projekt_faktury_WPF.ViewModels"
+             xmlns:view="clr-namespace:Projekt_faktury_WPF.Views"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Style/RadioButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:BossDataViewModel}">
+                <view:BossDataView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:MakeBussinesViewModel}">
+                <view:MakeBusinessView2/>
+            </DataTemplate>
         </ResourceDictionary>
+
+        
     </Application.Resources>
 </Application>

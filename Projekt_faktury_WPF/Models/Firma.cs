@@ -6,28 +6,32 @@ using System.Threading.Tasks;
 
 namespace Projekt_faktury_WPF.Models
 {
-    public class Firma
+    public sealed class Firma
     {
-        
+        private Firma() { }
+
+        private static Firma _instance;
+
+        public static Firma GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new Firma();
+            }
+            return _instance;
+        }
 
         public string Name { get;}
 
-        public BankAccount BankAccount { get;}
+        public BankAccount BankAccount { get; set; }
 
-        public BossData BossData { get;}
+        public BossData BossData { get; set; }
 
-        public CompanyData CompanyData { get;}
+        public CompanyData CompanyData { get; set; }
 
-        public DocumentNumbering DocumentNumbering { get;}
+        public DocumentNumbering DocumentNumbering { get; set; }
         
-        public Firma(string name, BankAccount bankAccount, BossData bossData, CompanyData companyData, DocumentNumbering documentNumbering)
-        {
-            Name = name;
-            BankAccount = bankAccount;
-            BossData = bossData;
-            CompanyData = companyData;
-            DocumentNumbering = documentNumbering;
-        }
+        
         
     }
 }

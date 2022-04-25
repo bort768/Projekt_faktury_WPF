@@ -13,12 +13,15 @@ namespace Projekt_faktury_WPF.ViewModels
         public CommandBase BossDataCommand { get; set; }
 
         public CommandBase MakeBussinesCommand { get; set; }
+        public CommandBase BankAccountCommand { get; set; }
 
         //public ViewModelBase CurrrentViewModel { get; }
 
         public BossDataViewModel BossDataViewModel { get; }
 
         public MakeBussinesViewModel MakeBussinesViewModel { get; }
+
+        public BankAccountViewModel BankAccountViewModel { get; }
 
         private object _currentView;
 
@@ -37,8 +40,9 @@ namespace Projekt_faktury_WPF.ViewModels
 
             BossDataViewModel = new BossDataViewModel();
             MakeBussinesViewModel = new MakeBussinesViewModel();
+            BankAccountViewModel = new BankAccountViewModel();
 
-            CurrentView = BossDataViewModel;
+            CurrentView = MakeBussinesViewModel;
 
             BossDataCommand = new CommandBase(r =>
             {
@@ -48,6 +52,11 @@ namespace Projekt_faktury_WPF.ViewModels
             MakeBussinesCommand = new CommandBase(r =>
             {
                 CurrentView = MakeBussinesViewModel;
+            });
+
+            BankAccountCommand = new CommandBase(r =>
+            {
+                CurrentView = BossDataViewModel;
             });
         }
     }

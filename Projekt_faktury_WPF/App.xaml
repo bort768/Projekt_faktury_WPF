@@ -9,6 +9,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Style/RadioButtonStyle.xaml"/>
+                <ResourceDictionary Source="Style/TextBoxStyle.xaml"/>
+                <ResourceDictionary Source="Style/ButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:BossDataViewModel}">
@@ -17,6 +19,10 @@
 
             <DataTemplate DataType="{x:Type viewModel:MakeBussinesViewModel}">
                 <view:MakeBusinessView2/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:BankAccountViewModel}">
+                <view:BankAccountView/>
             </DataTemplate>
         </ResourceDictionary>
 

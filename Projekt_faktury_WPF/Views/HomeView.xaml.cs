@@ -16,16 +16,13 @@ using System.Windows.Shapes;
 namespace Projekt_faktury_WPF.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy MakeBusinessView2.xaml
+    /// Logika interakcji dla klasy HomeView.xaml
     /// </summary>
-    public partial class MakeBusinessView2 : UserControl
+    public partial class HomeView : UserControl
     {
-        public MakeBusinessView2()
+        public HomeView()
         {
             InitializeComponent();
-
-              
-
         }
     }
 }

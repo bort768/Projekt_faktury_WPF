@@ -40,37 +40,45 @@
                 <RadioButton Content="Home"
                              Height="50"
                              Foreground="White"
-                             FontSize="14"
+                             FontSize="14"                        
                              Style="{StaticResource RadioButtonStyle}"
-                             Command="{Binding MakeBussinesCommand}"/>
+                             />
                 
                 <RadioButton Content="Company Data"
                              Height="50"
                              Foreground="White"
-                             FontSize="14"
-                             Style="{StaticResource RadioButtonStyle}"
-                             Command="{Binding BossDataCommand}"/>
+                             FontSize="14"                         
+                             Style="{StaticResource RadioButtonStyle}"  
+                             Command="{Binding MakeBussinesCommand}"/>
                 
                 <RadioButton Content="Boss Data"
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             Style="{StaticResource RadioButtonStyle}"/>
+                             Style="{StaticResource RadioButtonStyle}"
+                             Command="{Binding BossDataCommand}"/>
             </StackPanel>
 
-            <Button x:Name="Close_Button"
-                    Grid.Column="1"
+            <Border Grid.Column="1"
                     VerticalAlignment="Top"
                     HorizontalAlignment="Right"
+                    CornerRadius="0, 20, 0, 0"
+                    Background="Crimson"
                     Width="30"
                     Height="30"
+                    >
+                <Button x:Name="Close_Button"
+                    Grid.Column="1"                                 
                     Content="X"
                     FontSize="20"
+                    Width="30"
+                    Height="30"                   
                     VerticalContentAlignment="Center"
-                    HorizontalContentAlignment="Center"
-                    Background="Crimson" 
-                    Click="Button_Close_App"/>
-
+                    HorizontalContentAlignment="Center"      
+                    Click="Button_Close_App" Background="Transparent" BorderBrush="Transparent"
+                    />
+            </Border>
+            
             <ContentControl Grid.Row="1"
                             Grid.Column="1"
                             Margin="10"

@@ -3,10 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Projekt_faktury_WPF.Views"
+             xmlns:local="clr-namespace:Projekt_faktury_WPF.Views" 
+             xmlns:viewModel="clr-namespace:Projekt_faktury_WPF.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" 
              d:DesignWidth="800">
+    <UserControl.Resources>
+        <viewModel:BossDataViewModel x:Key="XD"/>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <Binding Source="{StaticResource XD}"/>
+    </UserControl.DataContext>
     <StackPanel>
         <TextBlock Text="Dane Szefa"
                   Foreground="White"
@@ -30,10 +37,116 @@
                                        Rect="0, 0, 400, 200"/>
 
                 </Border.Clip>
+                <Grid Margin="5, 0, 5, 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                      
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0"
+                           Text="Imie"
+                           FontSize="22"
+                           Foreground="White"
+                           VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1" 
+                             Grid.Row="0"
+                             x:Name="Imie"          
+                             Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalAlignment="Center"
+                             />
+
+                    <TextBlock Grid.Row="1"
+                               Text="Nazwisko"
+                               FontSize="22"
+                               Foreground="White"
+                               VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1"
+                             Grid.Row="1"
+                             x:Name="Nazwisko"
+                             Text="{Binding Last_Name, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalAlignment="Center"
+                             />
+
+                    <TextBlock Grid.Row="2"
+                               Text="ID"
+                               FontSize="22"
+                               Foreground="White"
+                               VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1"
+                             Grid.Row="2"
+                             x:Name="ID"
+                             Text="{Binding ID, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalAlignment="Center"
+                             />
+
+                    <TextBlock Grid.Row="3"
+                               Text="Hasło"
+                               FontSize="22"
+                               Foreground="White"
+                               VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1"
+                             Grid.Row="3"
+                             x:Name="Haslo"
+                             Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalAlignment="Center" />
+                             <!--"{StaticResource ModernTextBox}"-->
+
+                    
+                    
+
+                </Grid>
+                
+                
                 
             </Border>
 
-        </StackPanel>
+            
 
+
+
+
+        </StackPanel>
+        <StackPanel Orientation="Vertical">
+
+            <Button VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Width="100"
+                    Content="Submit"
+                    Foreground="White"
+                    FontSize="14" Cursor="Hand"
+                    Command="{Binding SubmitButtonCommand}">
+
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FF372F46"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF347F46"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="100"
+                                Height="25"
+                                CornerRadius="12"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                
+            </Button>
+        </StackPanel>
     </StackPanel>
 </UserControl>

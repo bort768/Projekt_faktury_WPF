@@ -14,11 +14,11 @@ namespace Projekt_faktury_WPF.Models
         public string Currency { get; set; }
         public int Value { get; set; }
 
-        public BankAccount(string bankAccount_Name, string account_Number, bool is_IBAN_Active, string currency, int value)
+        public BankAccount(string bankAccount_Name, string account_Number, string currency, int value)
         {
             BankAccount_Name = bankAccount_Name;
             Account_Number = account_Number;
-            Is_IBAN_Active = is_IBAN_Active;
+            //_IBAN_Active = is_IBAN_Active;
             Currency = currency;
             Value = value;
         }

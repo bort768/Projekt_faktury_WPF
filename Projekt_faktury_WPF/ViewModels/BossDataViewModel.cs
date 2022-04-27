@@ -90,7 +90,7 @@ namespace Projekt_faktury_WPF.ViewModels
 
             SubmitButtonCommand = new CommandBase(r =>
             {
-                BossData bossData = new BossData(Name, Last_Name, ID, Password);
+                BossData bossData = new BossData(Name, Last_Name, ID, Password); // po co?
                 MessageBox.Show("Dane zapisane", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
                 firma.BossData = bossData;
             });

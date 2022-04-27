@@ -57,6 +57,20 @@
                              FontSize="14"
                              Style="{StaticResource RadioButtonStyle}"
                              Command="{Binding BossDataCommand}"/>
+                
+                <RadioButton Content="Bank Account"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource RadioButtonStyle}"
+                             Command="{Binding BankAccountCommand}"/>
+
+                <RadioButton Content="Kontrahenci"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource RadioButtonStyle}"
+                             Command="{Binding KonthrahentViewModel}"/>
             </StackPanel>
 
             <Border Grid.Column="1"

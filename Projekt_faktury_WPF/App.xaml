@@ -24,6 +24,10 @@
             <DataTemplate DataType="{x:Type viewModel:BankAccountViewModel}">
                 <view:BankAccountView/>
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:KonthrahentViewModel}">
+                <view:KontrahenciView/>
+            </DataTemplate>
         </ResourceDictionary>
 
         

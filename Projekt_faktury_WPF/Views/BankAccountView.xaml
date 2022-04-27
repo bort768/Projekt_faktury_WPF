@@ -13,7 +13,140 @@
     <UserControl.DataContext>
         <Binding Source="{StaticResource UwU}"/>
     </UserControl.DataContext>
-    <Grid>
-            
-    </Grid>
+    <StackPanel>
+        <TextBlock Text="Dane Szefa"
+                  Foreground="White"
+                  FontSize="20"
+                  HorizontalAlignment="Left"
+                  Margin="0,0,0,20" />
+        <StackPanel Orientation="Horizontal">
+            <Border Width="400"
+                    Height="200">
+
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="1,2">
+                        <GradientStop Color="#5bc3ff" Offset="0.1"/>
+                        <GradientStop Color="#1aa0ff" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <Border.Clip>
+                    <RectangleGeometry RadiusX="10"
+                                       RadiusY="10"
+                                       Rect="0, 0, 400, 200"/>
+
+                </Border.Clip>
+                <Grid Margin="5, 0, 5, 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0"
+                           Text="Nazwa Konta"
+                           FontSize="22"
+                           Foreground="White"
+                           VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1" 
+                             Grid.Row="0"
+                                       
+                             Text="{Binding BankAccount_Name, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalAlignment="Center"
+                             />
+
+                    <TextBlock Grid.Row="1"
+                               Text="Numer konta"
+                               FontSize="22"
+                               Foreground="White"
+                               VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1"
+                             Grid.Row="1"
+                             x:Name="Nazwisko"
+                             Text="{Binding Account_Number, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalAlignment="Center"
+                             />
+
+                    <TextBlock Grid.Row="2"
+                               Text="Waluta"
+                               FontSize="22"
+                               Foreground="White"
+                               VerticalAlignment="Center"/>
+                    <ComboBox Grid.Column="1"
+                              Grid.Row="2"
+                              x:Name="Currency"
+                              SelectedValue="{Binding Currency}"              
+                              ItemsSource="{Binding CurrencyComboBox}"
+                              VerticalAlignment="Center"
+                             />
+
+                    <TextBlock Grid.Row="3"
+                               Text="Stan"
+                               FontSize="22"
+                               Foreground="White"
+                               VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1"
+                             Grid.Row="3"
+                             x:Name="Haslo"
+                             Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalAlignment="Center" />
+                    <!--"{StaticResource ModernTextBox}"-->
+
+
+
+
+                </Grid>
+
+
+
+            </Border>
+
+
+
+
+
+
+        </StackPanel>
+        <StackPanel Orientation="Vertical">
+
+            <Button VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Width="100"
+                    Content="Submit"
+                    Foreground="White"
+                    FontSize="14" Cursor="Hand"
+                    Command="{Binding SubmitCommandButton}">
+
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FF372F46"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF347F46"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="100"
+                                Height="25"
+                                CornerRadius="12"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+        </StackPanel>
+    </StackPanel>
 </UserControl>

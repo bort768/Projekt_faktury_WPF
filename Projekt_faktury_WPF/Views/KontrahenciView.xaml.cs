@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace Projekt_faktury_WPF.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy BankAccountView.xaml
+    /// Logika interakcji dla klasy KontrahenciView.xaml
     /// </summary>
-    public partial class BankAccountView : UserControl
+    public partial class KontrahenciView : UserControl
     {
-        public BankAccountView()
+        public KontrahenciView()
         {
             InitializeComponent();
         }
-
     }
 }

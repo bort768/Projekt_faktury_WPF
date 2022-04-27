@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projekt_faktury_WPF.Models
 {
+    
     public sealed class Firma
     {
         private Firma() { }
@@ -21,7 +22,10 @@ namespace Projekt_faktury_WPF.Models
             return _instance;
         }
 
+
         public string Name { get;}
+
+        public int NumerFaktury { get; set;}
 
         public BankAccount BankAccount { get; set; }
 

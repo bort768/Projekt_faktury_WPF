@@ -1,0 +1,317 @@
+﻿<UserControl x:Class="Projekt_faktury_WPF.Views.KontrahenciView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Projekt_faktury_WPF.Views" 
+             xmlns:viewModel="clr-namespace:Projekt_faktury_WPF.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="720">
+    <UserControl.Resources>
+        <viewModel:KonthrahentViewModel x:Key="vm"/>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <Binding Source="{StaticResource vm}"/>
+    </UserControl.DataContext>
+    <Grid Background="Transparent">
+
+
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.8*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Dane biznesu"
+                       Foreground="White"
+                       FontSize="20"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Margin="0,0,0,20" />
+
+
+
+
+
+            <Grid Grid.Row="1" Margin=" 0,0,0,0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+
+
+                <Border Grid.Column="0" 
+                        Grid.Row="0" 
+                        Width="340">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="1,2">
+                            <GradientStop Color="#FFBD8641" Offset="0.1"/>
+                            <GradientStop Color="#FFB76D11" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+
+                    <Border.Clip>
+                        <RectangleGeometry RadiusX="10"
+                                       RadiusY="10"
+                                       Rect="0, 0, 340, 200"/>
+
+                    </Border.Clip>
+
+                    <Grid Margin="5 25 0 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock 
+                            Grid.Row="0"
+                            Grid.Column="0" 
+                            Text="Pełna Nazwa Firmy" Foreground="White"
+                            />
+                        <TextBox 
+                                Grid.Row="1" 
+                                x:Name="Pelna_nazwa"
+                                Text="{Binding Full_Name, UpdateSourceTrigger=PropertyChanged}" 
+                                Margin="0 5 10 0"
+                                Width="Auto"                    
+                                />
+
+                        <TextBlock 
+                            Grid.Row="2"
+                            Grid.Column="0" 
+                            Text="NIP" 
+                            Foreground="White"
+                            />
+                        <TextBox 
+                                Grid.Row="3" 
+                                x:Name="NIP"
+                                Text="{Binding NIP, UpdateSourceTrigger=PropertyChanged}" 
+                                Margin="0 5 10 0"
+                                Width="Auto"                    
+                                />
+
+                        <TextBlock 
+                            Grid.Row="4"
+                            Grid.Column="0" 
+                            Text="REGON" 
+                            Foreground="White"
+                            />
+                        <TextBox 
+                                Grid.Row="5" 
+                                x:Name="REGON"
+                                Text="{Binding REGON, UpdateSourceTrigger=PropertyChanged}" 
+                                Margin="0 5 10 0"
+                                Width="Auto"                    
+                                />
+
+
+
+                    </Grid>
+
+                </Border>
+
+                <Border Grid.Column="1"
+                        Width="340">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="1,2">
+                            <GradientStop Color="#FF3FA3AF" Offset="0.1"/>
+                            <GradientStop Color="#FF233067" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+
+                    <Border.Clip>
+                        <RectangleGeometry RadiusX="10"
+                                       RadiusY="10"
+                                       Rect="0, 0, 340, 200"/>
+
+                    </Border.Clip>
+
+                    <Grid Margin="5 25 0 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock 
+                            Grid.Row="0"
+                            Grid.Column="0" 
+                            Text="Ulica" Foreground="White"
+                            />
+                        <TextBox 
+                                Grid.Row="1" 
+                                x:Name="Ulica"
+                                Text="{Binding Street, UpdateSourceTrigger=PropertyChanged}" 
+                                Margin="0 5 10 0"
+                                Width="Auto"                    
+                                />
+
+                        <TextBlock 
+                            Grid.Row="0"
+                            Grid.Column="1" 
+                            Text="Numer Lokalu" 
+                            Foreground="White"
+                            />
+                        <TextBox 
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                x:Name="Numer_lokalu"
+                                Text="{Binding House_Number, UpdateSourceTrigger=PropertyChanged}" 
+                                Margin="0 5 10 0"
+                                Width="50"   
+                                HorizontalAlignment="Left"
+                                />
+
+                        <TextBlock 
+                            Grid.Row="2"
+                            Grid.Column="0" 
+                            Text="Miasto" 
+                            Foreground="White"
+                            />
+                        <TextBox 
+                                Grid.Row="3" 
+                                x:Name="Apartment_Number"
+                                Text="{Binding Town, UpdateSourceTrigger=PropertyChanged}" 
+                                Margin="0 5 10 0"
+                                Width="Auto" 
+                                
+                                />
+
+                        <TextBlock 
+                            Grid.Row="2"
+                            Grid.Column="1" 
+                            Text="Kod Pocztowy" 
+                            Foreground="White"
+                            />
+                        <TextBox 
+                                Grid.Row="3" 
+                                Grid.Column="1"
+                                x:Name="ZIP_Code"
+                                Text="{Binding ZIP_Code, UpdateSourceTrigger=PropertyChanged}" 
+                                Margin="0 5 10 0"
+                                Width="50"
+                                HorizontalAlignment="Left"
+                                />
+
+
+
+                    </Grid>
+
+                </Border>
+
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="1" Height="160"
+                            >
+
+                    <Border Width="340"
+                            Height="140"
+                            Margin="10">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,1" EndPoint="1,2">
+                                <GradientStop Color="#FFA54399" Offset="0.1"/>
+                                <GradientStop Color="#FF4E2367" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+
+                        <Border.Clip>
+                            <RectangleGeometry RadiusX="10"
+                                       RadiusY="10"
+                                       Rect="0, 0, 340, 140"/>
+
+                        </Border.Clip>
+                        <StackPanel Margin="5">
+
+                            <TextBlock Margin="5,0,0,0"
+                           Text="Nazwa Konta"
+                           FontSize="22"
+                           Foreground="White"
+                           VerticalAlignment="Center"/>
+                            <TextBox Margin="5,0,0,0"
+                                     Text="{Binding BankAccount_Name, UpdateSourceTrigger=PropertyChanged}"
+                                     VerticalAlignment="Center"
+                             />
+
+                            <TextBlock Text="Numer konta"
+                                       FontSize="22"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                            <TextBox 
+                                     x:Name="Nazwisko"
+                                     Text="{Binding Account_Number, UpdateSourceTrigger=PropertyChanged}"
+                                     VerticalAlignment="Center"
+                             />
+
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+                <Button 
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Margin="0,10,5,0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Width="100"
+                    Content="Submit"
+                    Foreground="White"
+                    FontSize="14" Cursor="Hand"
+                    Command="{Binding SubmitCompanyDataCommand}">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FF372F46"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF347F46"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="100"
+                                Height="25"
+                                CornerRadius="12"
+                                Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+
+
+
+
+
+            </Grid>
+
+
+
+
+        </Grid>
+    </Grid>
+</UserControl>

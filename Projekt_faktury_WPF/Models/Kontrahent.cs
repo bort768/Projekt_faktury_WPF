@@ -15,6 +15,7 @@ namespace Projekt_faktury_WPF.Models
             Company = company;
         }
 
+        // można dodac numer kontrahenta(index)
         public string BankAccount_Name { get; set; }
         public string Account_Number { get; set; }
         public CompanyData Company { get; set; }

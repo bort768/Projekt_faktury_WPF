@@ -44,6 +44,7 @@ namespace Projekt_faktury_WPF.ViewModels
             BossDataViewModel = new BossDataViewModel();
             MakeBussinesViewModel = new MakeBussinesViewModel();
             BankAccountViewModel = new BankAccountViewModel();
+            KonthrahentViewModel = new KonthrahentViewModel();
 
             CurrentView = MakeBussinesViewModel;
 

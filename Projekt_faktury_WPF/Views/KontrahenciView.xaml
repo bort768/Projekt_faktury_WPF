@@ -13,11 +13,8 @@
     <UserControl.DataContext>
         <Binding Source="{StaticResource vm}"/>
     </UserControl.DataContext>
-    <Grid Background="Transparent">
-
-
-
-        <Grid>
+    
+        <Grid Background="Transparent">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.2*"/>
                 <RowDefinition Height="0.8*"/>
@@ -29,8 +26,29 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"
                        Margin="0,0,0,20" />
-
-
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+                
+                <TextBlock Text="Kontrahent"
+                           Foreground="White"
+                           FontSize="20"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Margin="0,0,15,0"
+                           />
+                
+                <ComboBox 
+                      Grid.Row="0"
+                      Width="150"
+                      Margin="0,0,20,0"
+                      x:Name="kontrahenci"
+                      SelectedValue="{Binding LastVisetedKontrahent}"              
+                      ItemsSource="{Binding listaDoCombobox}"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Right"          
+                />
+            </StackPanel>
+            
 
 
 
@@ -254,11 +272,13 @@
                             <TextBlock Text="Numer konta"
                                        FontSize="22"
                                        Foreground="White"
-                                       VerticalAlignment="Center"/>
-                            <TextBox 
+                                       VerticalAlignment="Center"
+                                       Margin="5,0,0,0"/>
+                            <TextBox Margin="5,0,0,0"
                                      x:Name="Nazwisko"
                                      Text="{Binding Account_Number, UpdateSourceTrigger=PropertyChanged}"
                                      VerticalAlignment="Center"
+                                     
                              />
 
                         </StackPanel>
@@ -275,7 +295,7 @@
                     Content="Submit"
                     Foreground="White"
                     FontSize="14" Cursor="Hand"
-                    Command="{Binding SubmitCompanyDataCommand}">
+                    Command="{Binding SubmitKontrahent}">
 
                     <Button.Style>
                         <Style TargetType="Button">
@@ -303,15 +323,52 @@
 
                 </Button>
 
+            <Button 
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Margin="0,60,5,0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Width="100"
+                    Content="Usuń"
+                    Foreground="White"
+                    FontSize="14" Cursor="Hand"
+                    Command="{Binding DeleteKontrahent}">
 
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FF372F46"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF8C3131"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
 
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="100"
+                                Height="25"
+                                CornerRadius="12"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
 
-
-            </Grid>
+            </Button>
 
 
 
 
         </Grid>
-    </Grid>
+
+
+
+
+        </Grid>
+    
 </UserControl>

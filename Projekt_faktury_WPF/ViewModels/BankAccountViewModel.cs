@@ -13,6 +13,7 @@ namespace Projekt_faktury_WPF.ViewModels
     {
 
         public CommandBase SubmitCommandButton { get; set; }
+
         Firma firma = Firma.GetInstance();
 
         private List<string> _currencyComboBox;

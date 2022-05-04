@@ -72,6 +72,13 @@
                              Style="{StaticResource RadioButtonStyle}"
                              Command="{Binding KontrahenciCommand}"/>
 
+                <RadioButton Content="Towary i usługi"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource RadioButtonStyle}"
+                             Command="{Binding AddGoodsCommand}"/>
+
             </StackPanel>
             
             <Button 

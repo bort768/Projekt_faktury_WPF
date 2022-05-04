@@ -2,6 +2,7 @@
 using Projekt_faktury_WPF.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,8 +34,9 @@ namespace Projekt_faktury_WPF.ViewModels
             }
         }
 
-        public List<string> _listaDoCombobox;
-        public List<string> listaDoCombobox
+        
+        public ObservableCollection<string> _listaDoCombobox;
+        public ObservableCollection<string> listaDoCombobox
         {
             get
             {
@@ -217,7 +219,7 @@ namespace Projekt_faktury_WPF.ViewModels
             }
             else
             {
-                listaDoCombobox = new List<string>();
+                listaDoCombobox = new();
             }
           
                 

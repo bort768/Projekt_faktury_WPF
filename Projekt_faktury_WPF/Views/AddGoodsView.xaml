@@ -40,10 +40,8 @@
             <ComboBox 
                       Grid.Row="0"
                       Width="150"
-                      Margin="0,0,20,0"
-                      x:Name="kontrahenci"
-                      SelectedValue="{Binding LastVisetedKontrahent}"              
-                      ItemsSource="{Binding listaDoCombobox}"
+                      Margin="0,0,20,0"              
+                      ItemsSource="{Binding LastVisetedGoods}"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Right"          
                 />
@@ -101,7 +99,7 @@
                     <TextBox 
                                 Grid.Row="1" 
                                 x:Name="Pelna_nazwa"
-                                Text="{Binding Full_Name, UpdateSourceTrigger=PropertyChanged}" 
+                                Text="{Binding Product_Name, UpdateSourceTrigger=PropertyChanged}" 
                                 Margin="0 5 10 0"
                                 Width="Auto"                    
                                 />
@@ -114,8 +112,8 @@
                             />
                     <TextBox
                             Grid.Row="3" 
-                            x:Name="NIP"
-                            Text="{Binding NIP, UpdateSourceTrigger=PropertyChanged}" 
+                            x:Name="Product_Code"
+                            Text="{Binding Product_Code, UpdateSourceTrigger=PropertyChanged}" 
                             Margin="0 5 10 0"
                             Width="Auto"                    
                             />
@@ -128,16 +126,13 @@
                             />
                     <TextBox 
                             Grid.Row="5" 
-                            x:Name="REGON"
-                            Text="{Binding REGON, UpdateSourceTrigger=PropertyChanged}" 
+                            x:Name="Description"
+                            Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" 
                             Margin="0 5 10 0"
                             Width="Auto"
                             Height="50"
-                            FontSize="20"
                             />
-
-
-
+                    
                 </Grid>
 
             </Border>
@@ -176,12 +171,12 @@
                     <TextBlock 
                             Grid.Row="0"
                             Grid.Column="0" 
-                            Text="Ulica" Foreground="White"
+                            Text="Cena Netto" Foreground="White"
                             />
                     <TextBox 
                                 Grid.Row="1" 
-                                x:Name="Ulica"
-                                Text="{Binding Street, UpdateSourceTrigger=PropertyChanged}" 
+                                x:Name="Price_Netto"
+                                Text="{Binding Price_Netto, UpdateSourceTrigger=PropertyChanged}" 
                                 Margin="0 5 10 0"
                                 Width="Auto"                    
                                 />
@@ -189,49 +184,47 @@
                     <TextBlock 
                             Grid.Row="0"
                             Grid.Column="1" 
-                            Text="Numer Lokalu" 
+                            Text="Vat" 
                             Foreground="White"
                             />
-                    <TextBox 
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                x:Name="Numer_lokalu"
-                                Text="{Binding House_Number, UpdateSourceTrigger=PropertyChanged}" 
-                                Margin="0 5 10 0"
-                                Width="50"   
-                                HorizontalAlignment="Left"
-                                />
+                    <ComboBox Grid.Row="1"
+                              Grid.Column="1"
+                              x:Name="VAT_Combobox"
+                              SelectedValue="{Binding Vat_Combobox[0]}"
+                              ItemsSource="{Binding Vat_Combobox}"
+                              Margin="0 5 10 0"
+                              Width="75"   
+                              HorizontalAlignment="Left"
+                              />
 
-                    <TextBlock 
-                            Grid.Row="2"
-                            Grid.Column="0" 
-                            Text="Miasto" 
-                            Foreground="White"
-                            />
-                    <TextBox 
-                                Grid.Row="3" 
-                                x:Name="Apartment_Number"
-                                Text="{Binding Town, UpdateSourceTrigger=PropertyChanged}" 
-                                Margin="0 5 10 0"
-                                Width="Auto" 
-                                
-                                />
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="0" 
+                               Text="Miasto" 
+                               Foreground="White"
+                               />
+                    <TextBox Grid.Row="3" 
+                             x:Name="Price_Brutto"
+                             Text="{Binding Price_Brutto, UpdateSourceTrigger=PropertyChanged}" 
+                             Margin="0 5 10 0"
+                             Width="Auto" 
+                             IsEnabled="False"
+                             />
 
                     <TextBlock 
                             Grid.Row="2"
                             Grid.Column="1" 
-                            Text="Kod Pocztowy" 
+                            Text="ID" 
                             Foreground="White"
                             />
                     <TextBox
                             Grid.Row="3" 
                             Grid.Column="1"
-                            x:Name="ZIP_Code"
-                            Text="{Binding ZIP_Code, UpdateSourceTrigger=PropertyChanged}" 
+                            x:Name="ID"
+                            Text="{Binding Product_ID, UpdateSourceTrigger=PropertyChanged}" 
                             Margin="0 5 10 0"
-                            Width="50"
+                            Width="75"
                             HorizontalAlignment="Left"
-                            />
+                            IsEnabled="False"/>
 
 
 
@@ -255,7 +248,7 @@
                     Content="Submit"
                     Foreground="White"
                     FontSize="14" Cursor="Hand"
-                    Command="{Binding SubmitKontrahent}">
+                    Command="{Binding GetGoodsCommand}">
 
                 <Button.Style>
                     <Style TargetType="Button">
@@ -293,7 +286,7 @@
                     Content="Usuń"
                     Foreground="White"
                     FontSize="14" Cursor="Hand"
-                    Command="{Binding DeleteKontrahent}">
+                    Command="{Binding DeleteGoodsCommand}">
 
                 <Button.Style>
                     <Style TargetType="Button">

@@ -89,26 +89,36 @@ namespace Projekt_faktury_WPF.ViewModels
             }
         }
 
+        
+
         private int _value;
-        public int Value
+        public string Value
         {
             get
             {
-                return _value;
+                return _value.ToString();
             }
             set
             {
-                _value = value;
-                OnPropertyChanged();
+                try
+                {
+                    _value = Convert.ToInt32(value);
+                    OnPropertyChanged();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("UwU watrość nie jest liczbą", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
             }
         }
 
         public BankAccountViewModel()
         {        
             CurrencyComboBox = new List<string>();
-            _currencyComboBox.Add("PLN");
-            _currencyComboBox.Add("UwU");
-            _currencyComboBox.Add("In progress");
+            CurrencyComboBox.Add("PLN");
+            CurrencyComboBox.Add("UwU");
+            CurrencyComboBox.Add("In progress");
 
             
 
@@ -117,7 +127,7 @@ namespace Projekt_faktury_WPF.ViewModels
                BankAccount_Name = firma.BankAccount.BankAccount_Name;
                Account_Number = firma.BankAccount.Account_Number;
                Currency = firma.BankAccount.Currency;
-               Value = firma.BankAccount.Value;
+               Value = firma.BankAccount.Value.ToString();
             }
 
             SubmitCommandButton = new(r =>
@@ -134,9 +144,6 @@ namespace Projekt_faktury_WPF.ViewModels
                 }
                     firma.BankAccount = new BankAccount(_bankAccount_Name, _account_Number, _currency, _value);
                     MessageBox.Show("Dazne zapisane", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
-                    
-                
-
             });
         }
 

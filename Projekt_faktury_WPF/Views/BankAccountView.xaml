@@ -93,7 +93,7 @@
                     <TextBox Grid.Column="1"
                              Grid.Row="3"
                              x:Name="Haslo"
-                             Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding Value, UpdateSourceTrigger=PropertyChanged }"
                              VerticalAlignment="Center" />
                     <!--"{StaticResource ModernTextBox}"-->
 

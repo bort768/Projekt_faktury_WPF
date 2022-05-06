@@ -30,25 +30,22 @@ namespace Projekt_faktury_WPF.ViewModels
             set
             {
                 _lastVisetedKontrahent = value;
+                int index = 0;
+                foreach (var kontrahent in firma.kontrahents)
+                {
+                    if (kontrahent.Company.Full_Name == value)
+                    {
+                        SaveToLocal(index);
+                    }
+                    index++;
+                }
                 OnPropertyChanged();
             }
         }
 
         
-        public ObservableCollection<string> _listaDoCombobox;
-        public ObservableCollection<string> listaDoCombobox
-        {
-            get
-            {
-                return _listaDoCombobox;
-            }
-
-            set
-            {
-                _listaDoCombobox = value;
-                OnPropertyChanged();
-            }
-        }
+        //private ObservableCollection<string> _listaDoCombobox;
+        public ObservableCollection<string> listaDoCombobox { get; set; }
         
         private string _bankAccount_Name;
         public string BankAccount_Name
@@ -195,27 +192,25 @@ namespace Projekt_faktury_WPF.ViewModels
         {
             if (firma.kontrahents != null)
             {
-                BankAccount_Name = firma.kontrahents[0].BankAccount_Name;
-                Account_Number = firma.kontrahents[0].Account_Number;
-                Full_Name = firma.kontrahents[0].Company.Full_Name;
-                NIP = firma.kontrahents[0].Company.NIP;
-                REGON = firma.kontrahents[0].Company.REGON;
-                Street = firma.kontrahents[0].Company.Street;
-                House_Number = firma.kontrahents[0].Company.House_Number;
-                Town = firma.kontrahents[0].Company.Town;
-                ZIP_Code = firma.kontrahents[0].Company.ZIP_Code;
-
-                //zrób kontrahenta do usuwania go
-                company = new(_full_Name, _nIP, _REGON, _street, _house_Number, _ZIP_Code, _town);
-                kontrahent = new(BankAccount_Name, Account_Number, company);
+                int index = 0;
+                foreach (var kontrahent in firma.kontrahents)
+                {
+                    if (kontrahent.Company.Full_Name == _lastVisetedKontrahent)
+                    {
+                        SaveToLocal(index);
+                    }                    
+                    index++;
+                }
+                
 
                 listaDoCombobox = new();
 
+                //średnia optymalizcja jeśli chodzi o wieksze tabele
                 foreach (var item in firma.kontrahents)
                 {
                     listaDoCombobox.Add(item.Company.Full_Name);
                 }
-                
+
             }
             else
             {
@@ -238,6 +233,23 @@ namespace Projekt_faktury_WPF.ViewModels
             });
         }
 
+        private void SaveToLocal(int index)
+        {
+            BankAccount_Name = firma.kontrahents[index].BankAccount_Name;
+            Account_Number = firma.kontrahents[index].Account_Number;
+            Full_Name = firma.kontrahents[index].Company.Full_Name;
+            NIP = firma.kontrahents[index].Company.NIP;
+            REGON = firma.kontrahents[index].Company.REGON;
+            Street = firma.kontrahents[index].Company.Street;
+            House_Number = firma.kontrahents[index].Company.House_Number;
+            Town = firma.kontrahents[index].Company.Town;
+            ZIP_Code = firma.kontrahents[index].Company.ZIP_Code;
+
+            //zrób kontrahenta do usuwania go
+            company = new(_full_Name, _nIP, _REGON, _street, _house_Number, _ZIP_Code, _town);
+            kontrahent = new(BankAccount_Name, Account_Number, company);
+        }
+
         private void RemoveFromKontrahents()
         {
             if (firma.kontrahents == null)
@@ -245,7 +257,7 @@ namespace Projekt_faktury_WPF.ViewModels
                 MessageBox.Show("Dane nie zostały usunięte", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (firma.kontrahents.Contains(kontrahent))
+            else if (firma.kontrahents.Contains(kontrahent))
             {
                 firma.kontrahents.Remove(kontrahent);
             }

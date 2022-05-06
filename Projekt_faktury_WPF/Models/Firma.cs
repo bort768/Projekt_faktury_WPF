@@ -36,6 +36,8 @@ namespace Projekt_faktury_WPF.Models
         public DocumentNumbering DocumentNumbering { get; set; }
 
         public List<Kontrahent> kontrahents { get; set; }
+
+        public List<Goods> goods { get; set; }
         
         
         

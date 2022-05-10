@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="Style/RadioButtonStyle.xaml"/>
                 <ResourceDictionary Source="Style/TextBoxStyle.xaml"/>
                 <ResourceDictionary Source="Style/ButtonStyle.xaml"/>
+                <ResourceDictionary Source="Style/TextBoxStyle_V2.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:BossDataViewModel}">

@@ -37,13 +37,13 @@
                            Margin="0,0,15,0"
                            />
 
-            <ComboBox 
-                      Grid.Row="0"
-                      Width="150"
-                      Margin="0,0,20,0"              
-                      ItemsSource="{Binding LastVisetedGoods}"
-                      VerticalAlignment="Center"
-                      HorizontalAlignment="Right"          
+            <ComboBox  Grid.Row="0"
+                       Width="150"
+                       Margin="0,0,20,0"              
+                       ItemsSource="{Binding LastVisetedGoods}"
+                       SelectedItem="{Binding Selected_Item}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Right"          
                 />
         </StackPanel>
 
@@ -102,7 +102,7 @@
                                 Text="{Binding Product_Name, UpdateSourceTrigger=PropertyChanged}" 
                                 Margin="0 5 10 0"
                                 Width="Auto"                    
-                                />
+                                Style="{StaticResource flatTextBox}"/>
 
                     <TextBlock 
                             Grid.Row="2"
@@ -115,7 +115,8 @@
                             x:Name="Product_Code"
                             Text="{Binding Product_Code, UpdateSourceTrigger=PropertyChanged}" 
                             Margin="0 5 10 0"
-                            Width="Auto"                    
+                            Width="Auto"
+                            Style="{StaticResource flatTextBox}"
                             />
 
                     <TextBlock 
@@ -131,7 +132,7 @@
                             Margin="0 5 10 0"
                             Width="Auto"
                             Height="50"
-                            />
+                            Style="{StaticResource flatTextBox}"/>
                     
                 </Grid>
 
@@ -176,10 +177,10 @@
                     <TextBox 
                                 Grid.Row="1" 
                                 x:Name="Price_Netto"
-                                Text="{Binding Price_Netto, UpdateSourceTrigger=PropertyChanged}" 
+                                Text="{Binding Price_Netto_To_String, UpdateSourceTrigger=PropertyChanged}" 
                                 Margin="0 5 10 0"
                                 Width="Auto"                    
-                                />
+                                Style="{StaticResource flatTextBox}"/>
 
                     <TextBlock 
                             Grid.Row="0"
@@ -191,6 +192,7 @@
                               Grid.Column="1"
                               x:Name="VAT_Combobox"
                               SelectedValue="{Binding Vat_Combobox[0]}"
+                              SelectedItem="{Binding Vat_Selected_Item}"
                               ItemsSource="{Binding Vat_Combobox}"
                               Margin="0 5 10 0"
                               Width="75"   
@@ -199,32 +201,27 @@
 
                     <TextBlock Grid.Row="2"
                                Grid.Column="0" 
-                               Text="Miasto" 
+                               Text="Cena Brutto" 
                                Foreground="White"
                                />
                     <TextBox Grid.Row="3" 
                              x:Name="Price_Brutto"
-                             Text="{Binding Price_Brutto, UpdateSourceTrigger=PropertyChanged}" 
+                             Text="{Binding Price_Brutto_To_String, UpdateSourceTrigger=PropertyChanged}" 
                              Margin="0 5 10 0"
                              Width="Auto" 
                              IsEnabled="False"
-                             />
+                             Style="{StaticResource flatTextBox}"/>
 
-                    <TextBlock 
-                            Grid.Row="2"
-                            Grid.Column="1" 
-                            Text="ID" 
-                            Foreground="White"
-                            />
-                    <TextBox
-                            Grid.Row="3" 
-                            Grid.Column="1"
-                            x:Name="ID"
-                            Text="{Binding Product_ID, UpdateSourceTrigger=PropertyChanged}" 
-                            Margin="0 5 10 0"
-                            Width="75"
-                            HorizontalAlignment="Left"
-                            IsEnabled="False"/>
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="1" 
+                               Text="Towar/Usługi" 
+                               Foreground="White"/>
+                    <ComboBox Grid.Row="3" 
+                              Grid.Column="1"
+                              x:Name="Goods"                 
+                              Margin="0 5 10 0"
+                              Width="75"
+                              HorizontalAlignment="Left"/>
 
 
 
@@ -232,12 +229,7 @@
 
             </Border>
 
-            <StackPanel Orientation="Horizontal"
-                            Grid.Row="1" Height="160"
-                            >
 
-
-            </StackPanel>
             <Button 
                     Grid.Column="1"
                     Grid.Row="1"

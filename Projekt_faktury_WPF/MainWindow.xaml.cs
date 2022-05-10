@@ -23,14 +23,17 @@ namespace Projekt_faktury_WPF
     {
         public MainWindow()
         {
-            InitializeComponent();
-
-            
+            InitializeComponent();          
         }
 
         private void Button_Close_App(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }

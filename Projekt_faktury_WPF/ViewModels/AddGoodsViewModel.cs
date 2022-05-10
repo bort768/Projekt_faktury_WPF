@@ -7,23 +7,79 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Projekt_faktury_WPF.ViewModels
 {
     public class AddGoodsViewModel : ViewModelBase
     {
+
+        #region Zmienne
         public CommandBase DeleteGoodsCommand { get; set; }
         public CommandBase GetGoodsCommand { get; set; }
 
         Firma firma = Firma.GetInstance();
 
-        public static int LastAddedGood;
+        public List<string> Vat_Combobox { get; set; }
 
+        private string _Vat_Selected_Item;
+        public string Vat_Selected_Item
+        {
+            get
+            {
+                return _Vat_Selected_Item;
+            }
+            set
+            {
+                _Vat_Selected_Item = value;
+                AssignToVAT(value);
+                Price_Brutto = _price_Netto * _VAT;
+                Price_Brutto_To_String = Math.Round((_price_Netto * _VAT), 2).ToString();
+                OnPropertyChanged();
+            }
+        }
+     
+        private double _VAT;
+        public double VAT
+        {
+            get
+            {
+                return _VAT;
+            }
+            set
+            {
+                _VAT = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _selected_Item;
+                public string Selected_Item
+                {
+                    get
+                    {
+                        return _selected_Item;
+                    }
+                    set
+                    {
+                        int index = 0;
+                        foreach (var kontrahent in firma.goods)
+                        {
+                            if (kontrahent.Product_Name == value)
+                            {
+                                SaveToLocal(index);
+                            }
+                            index++;
+                        }
+                        _selected_Item = value;
+                        OnPropertyChanged();
+                    }
+                }
         //private static int Product_ID;
 
         public ObservableCollection<string> LastVisetedGoods { get; set; }
 
-        public List<string> Vat_Combobox { get; set; }
+        
 
         private string _product_Name;
         public string Product_Name
@@ -81,8 +137,35 @@ namespace Projekt_faktury_WPF.ViewModels
             }
         }
 
-        private float _price_Netto;
-        public float Price_Netto
+
+        private string _price_Netto_To_String;
+        public string Price_Netto_To_String
+        {
+            get
+            {
+                return _price_Netto_To_String;
+            }
+            set
+            {
+                _price_Netto_To_String = value;
+                try
+                {
+                    Price_Netto = Convert.ToDouble(value);
+                    AssignToVAT(_Vat_Selected_Item);
+                    Price_Brutto = _price_Netto * _VAT;
+                    Price_Brutto_To_String = Math.Round((_price_Netto * _VAT), 2).ToString();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Wartość nie jest liczbą", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                OnPropertyChanged();
+            }
+        }
+        //
+        //czy jest potrzeba propchange na to uzywać?
+        private double _price_Netto;
+        public double Price_Netto
         {
             get
             {
@@ -95,8 +178,32 @@ namespace Projekt_faktury_WPF.ViewModels
             }
         }
 
-        private float _price_Brutto;
-        public float Price_Brutto
+        private string _price_Brutto_To_String;
+        public string Price_Brutto_To_String
+        {
+            get
+            {
+                return _price_Brutto_To_String;
+            }
+            set
+            {
+                _price_Brutto_To_String = value;
+
+                //w sumie nie potrzebne jak jest disable
+                //try
+                //{
+                //    Price_Brutto = Convert.ToDouble(value);
+                //}
+                //catch (Exception)
+                //{
+                //    MessageBox.Show("Wartość nie jest liczbą", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                //}
+                OnPropertyChanged();
+            }
+        }
+        //
+        private double _price_Brutto;
+        public double Price_Brutto
         {
             get
             {
@@ -105,23 +212,14 @@ namespace Projekt_faktury_WPF.ViewModels
             set
             {
                 _price_Brutto = value;
+                //Price_Brutto_To_String = value.ToString();
                 OnPropertyChanged();
             }
         }
 
-        private float _VAT;
-        public float VAT
-        {
-            get
-            {
-                return _VAT;
-            }
-            set
-            {
-                _VAT = value;
-                OnPropertyChanged();
-            }
-        }
+
+        #endregion
+
 
         public AddGoodsViewModel()
         {
@@ -134,13 +232,6 @@ namespace Projekt_faktury_WPF.ViewModels
 
             if (firma.goods != null)
             {
-                Product_Code = firma.goods[LastAddedGood].Product_Code;
-                Product_Name = firma.goods[LastAddedGood].Product_Name;
-                Description = firma.goods[LastAddedGood].Description;
-                Price_Netto = firma.goods[LastAddedGood].Price_Netto;
-                Price_Brutto = firma.goods[LastAddedGood].Price_Brutto;
-                Product_ID = firma.goods[LastAddedGood].Product_Id;
-
                 foreach (var Goods_Combobox in firma.goods)
                 {
                     LastVisetedGoods.Add(Product_Name);
@@ -153,14 +244,63 @@ namespace Projekt_faktury_WPF.ViewModels
 
             DeleteGoodsCommand = new CommandBase(r =>
             {
-                
+                if(firma.goods.Contains(new Goods(_product_Name, _product_Code, _description, _price_Netto, _price_Brutto, _VAT)))
+                {
+                    firma.goods.Remove(new Goods(_product_Name, _product_Code, _description, _price_Netto, _price_Brutto, _VAT));
+
+                    MessageBox.Show("Towar/Usługa została usunięta", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Coś poszło nie tak", ":/", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
 
             GetGoodsCommand = new CommandBase(r =>
             {
                 //submit goods
                 firma.goods.Add(new Goods(_product_Name, _product_Code, _description, _price_Netto, _price_Brutto, _VAT));
+                MessageBox.Show("Towar/Usługa został dodany", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
+                //TO DO: sprawdz czy już istnieje
             });
         }
+
+
+        #region Metody
+
+        private void SaveToLocal(int index)
+        {
+            Product_Code = firma.goods[index].Product_Code;
+            Product_Name = firma.goods[index].Product_Name;
+            Description = firma.goods[index].Description;
+            Price_Netto = firma.goods[index].Price_Netto;
+            Price_Brutto = firma.goods[index].Price_Brutto;
+            Product_ID = firma.goods[index].Product_Id;
+        }
+
+        private void AssignToVAT(string value)
+        {
+            if (value == Vat_Helper.VAT_23_String)
+            {
+                VAT = Vat_Helper.VAT_23;
+            }
+            if (value == Vat_Helper.VAT_7_String)
+            {
+                VAT = Vat_Helper.VAT_7;
+            }
+            if (value == Vat_Helper.VAT_6_String)
+            {
+                VAT = Vat_Helper.VAT_6;
+            }
+            if (value == Vat_Helper.VAT_3_String)
+            {
+                VAT = Vat_Helper.VAT_3;
+            }
+            if (value == Vat_Helper.VAT_0_String)
+            {
+                VAT = Vat_Helper.VAT_0;
+            }
+        }
+        #endregion
     }
 }

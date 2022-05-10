@@ -55,7 +55,7 @@
                            VerticalAlignment="Center"/>
                     <TextBox Grid.Column="1" 
                              Grid.Row="0"
-                                       
+                             Style="{StaticResource flatTextBox}"               
                              Text="{Binding BankAccount_Name, UpdateSourceTrigger=PropertyChanged}"
                              VerticalAlignment="Center"
                              />
@@ -70,7 +70,7 @@
                              x:Name="Nazwisko"
                              Text="{Binding Account_Number, UpdateSourceTrigger=PropertyChanged}"
                              VerticalAlignment="Center"
-                             />
+                             Style="{StaticResource flatTextBox}"/>
 
                     <TextBlock Grid.Row="2"
                                Text="Waluta"
@@ -94,7 +94,8 @@
                              Grid.Row="3"
                              x:Name="Haslo"
                              Text="{Binding Value, UpdateSourceTrigger=PropertyChanged }"
-                             VerticalAlignment="Center" />
+                             VerticalAlignment="Center" 
+                             Style="{StaticResource flatTextBox}"/>
                     <!--"{StaticResource ModernTextBox}"-->
 
 

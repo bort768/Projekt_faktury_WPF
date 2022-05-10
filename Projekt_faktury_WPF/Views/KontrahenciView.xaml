@@ -104,7 +104,7 @@
                                 Text="{Binding Full_Name, UpdateSourceTrigger=PropertyChanged}" 
                                 Margin="0 5 10 0"
                                 Width="Auto"                    
-                                />
+                                Style="{StaticResource flatTextBox}"/>
 
                         <TextBlock 
                             Grid.Row="2"
@@ -118,7 +118,7 @@
                                 Text="{Binding NIP, UpdateSourceTrigger=PropertyChanged}" 
                                 Margin="0 5 10 0"
                                 Width="Auto"                    
-                                />
+                                Style="{StaticResource flatTextBox}"/>
 
                         <TextBlock 
                             Grid.Row="4"
@@ -132,7 +132,7 @@
                                 Text="{Binding REGON, UpdateSourceTrigger=PropertyChanged}" 
                                 Margin="0 5 10 0"
                                 Width="Auto"                    
-                                />
+                                Style="{StaticResource flatTextBox}"/>
 
 
 
@@ -182,7 +182,7 @@
                                 Text="{Binding Street, UpdateSourceTrigger=PropertyChanged}" 
                                 Margin="0 5 10 0"
                                 Width="Auto"                    
-                                />
+                                Style="{StaticResource flatTextBox}"/>
 
                         <TextBlock 
                             Grid.Row="0"
@@ -198,7 +198,7 @@
                                 Margin="0 5 10 0"
                                 Width="50"   
                                 HorizontalAlignment="Left"
-                                />
+                                Style="{StaticResource flatTextBox}"/>
 
                         <TextBlock 
                             Grid.Row="2"
@@ -212,7 +212,7 @@
                                 Text="{Binding Town, UpdateSourceTrigger=PropertyChanged}" 
                                 Margin="0 5 10 0"
                                 Width="Auto" 
-                                
+                                Style="{StaticResource flatTextBox}"
                                 />
 
                         <TextBlock 
@@ -229,7 +229,7 @@
                                 Margin="0 5 10 0"
                                 Width="50"
                                 HorizontalAlignment="Left"
-                                />
+                                Style="{StaticResource flatTextBox}"/>
 
 
 
@@ -267,7 +267,7 @@
                             <TextBox Margin="5,0,0,0"
                                      Text="{Binding BankAccount_Name, UpdateSourceTrigger=PropertyChanged}"
                                      VerticalAlignment="Center"
-                             />
+                                     Style="{StaticResource flatTextBox}"/>
 
                             <TextBlock Text="Numer konta"
                                        FontSize="22"
@@ -278,7 +278,7 @@
                                      x:Name="Nazwisko"
                                      Text="{Binding Account_Number, UpdateSourceTrigger=PropertyChanged}"
                                      VerticalAlignment="Center"
-                                     
+                                     Style="{StaticResource flatTextBox}"
                              />
 
                         </StackPanel>

@@ -59,7 +59,7 @@
                              x:Name="Imie"          
                              Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
                              VerticalAlignment="Center"
-                             />
+                             Style="{StaticResource flatTextBox}"/>
 
                     <TextBlock Grid.Row="1"
                                Text="Nazwisko"
@@ -71,7 +71,7 @@
                              x:Name="Nazwisko"
                              Text="{Binding Last_Name, UpdateSourceTrigger=PropertyChanged}"
                              VerticalAlignment="Center"
-                             />
+                             Style="{StaticResource flatTextBox}"/>
 
                     <TextBlock Grid.Row="2"
                                Text="ID"
@@ -83,7 +83,7 @@
                              x:Name="ID"
                              Text="{Binding ID, UpdateSourceTrigger=PropertyChanged}"
                              VerticalAlignment="Center"
-                             />
+                             Style="{StaticResource flatTextBox}"/>
 
                     <TextBlock Grid.Row="3"
                                Text="Hasło"
@@ -94,7 +94,8 @@
                              Grid.Row="3"
                              x:Name="Haslo"
                              Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
-                             VerticalAlignment="Center" />
+                             VerticalAlignment="Center"
+                             Style="{StaticResource flatTextBox}"/>
                              <!--"{StaticResource ModernTextBox}"-->
 
                     

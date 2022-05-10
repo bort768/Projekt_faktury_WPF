@@ -14,12 +14,12 @@ namespace Projekt_faktury_WPF.Models
         public string Product_Code { get; set; }
         public int Product_Id { get; set; }
         public string Description { get; set; }
-        public float Price_Netto { get; set; }
-        public float Price_Brutto { get; set; }
-        public float VAT { get; set; }
+        public double Price_Netto { get; set; }
+        public double Price_Brutto { get; set; }
+        public double VAT { get; set; }
         // można dodać walute i inne parametry
 
-        public Goods(string product_Name, string product_Code, string description, float price_Netto, float price_Brutto, float vAT)
+        public Goods(string product_Name, string product_Code, string description, double price_Netto, double price_Brutto, double vAT)
         {
             Product_Name = product_Name;
             Product_Code = product_Code;

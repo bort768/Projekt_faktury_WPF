@@ -7,11 +7,12 @@
         xmlns:views="clr-namespace:Projekt_faktury_WPF.Views"
         xmlns:viewModel="clr-namespace:Projekt_faktury_WPF.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="920"
+        Title="BortOwO" Height="600" Width="920"
         WindowStyle="None"
         ResizeMode="NoResize" 
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
 
     <Window.DataContext>
         <viewModel:MainViewModel/>
@@ -41,8 +42,7 @@
                              Height="50"
                              Foreground="White"
                              FontSize="14"                        
-                             Style="{StaticResource RadioButtonStyle}"
-                             />
+                             Style="{StaticResource RadioButtonStyle}"/>
                 
                 <RadioButton Content="Company Data"
                              Height="50"
@@ -72,17 +72,30 @@
                              Style="{StaticResource RadioButtonStyle}"
                              Command="{Binding KontrahenciCommand}"/>
 
-                <RadioButton Content="Towary i usługi"
+                <RadioButton Content="Towary i Usługi"
                              Height="50"
                              Foreground="White"
                              FontSize="14"
                              Style="{StaticResource RadioButtonStyle}"
                              Command="{Binding AddGoodsCommand}"/>
 
+                <RadioButton Content="Faktura Sprzedaż"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource RadioButtonStyle}"
+                             Command="{Binding AddGoodsCommand}"/>
+
+                <RadioButton Content="Faktura Zakup"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource RadioButtonStyle}"
+                             Command="{Binding AddGoodsCommand}"/>
+                
             </StackPanel>
             
-            <Button 
-                    Grid.Column="1"
+            <Button Grid.Column="1"
                     Grid.Row="0"          
                     VerticalAlignment="Top"
                     HorizontalAlignment="Right"
@@ -126,8 +139,6 @@
                             Margin="10"
                             Content="{Binding CurrentView}"/>
         </Grid>
-        
-        
-        
+             
     </Border>
 </Window>

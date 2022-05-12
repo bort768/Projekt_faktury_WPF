@@ -63,9 +63,9 @@ namespace Projekt_faktury_WPF.ViewModels
                     set
                     {
                         int index = 0;
-                        foreach (var kontrahent in firma.goods)
+                        foreach (var goods in firma.goods)
                         {
-                            if (kontrahent.Product_Name == value)
+                            if (goods.Product_Name == value)
                             {
                                 SaveToLocal(index);
                             }
@@ -244,9 +244,9 @@ namespace Projekt_faktury_WPF.ViewModels
 
             DeleteGoodsCommand = new CommandBase(r =>
             {
-                if(firma.goods.Contains(new Goods(_product_Name, _product_Code, _description, _price_Netto, _price_Brutto, _VAT)))
+                if(firma.goods.Contains(new Goods(_product_Name, _product_Code, _description, _price_Netto, _price_Brutto, _VAT, _Vat_Selected_Item)))
                 {
-                    firma.goods.Remove(new Goods(_product_Name, _product_Code, _description, _price_Netto, _price_Brutto, _VAT));
+                    firma.goods.Remove(new Goods(_product_Name, _product_Code, _description, _price_Netto, _price_Brutto, _VAT, _Vat_Selected_Item));
 
                     MessageBox.Show("Towar/Usługa została usunięta", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -259,7 +259,7 @@ namespace Projekt_faktury_WPF.ViewModels
             GetGoodsCommand = new CommandBase(r =>
             {
                 //submit goods
-                firma.goods.Add(new Goods(_product_Name, _product_Code, _description, _price_Netto, _price_Brutto, _VAT));
+                firma.goods.Add(new Goods(_product_Name, _product_Code, _description, _price_Netto, _price_Brutto, _VAT, _Vat_Selected_Item));
                 MessageBox.Show("Towar/Usługa został dodany", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
                 //TO DO: sprawdz czy już istnieje
             });

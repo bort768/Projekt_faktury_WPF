@@ -17,9 +17,11 @@ namespace Projekt_faktury_WPF.Models
         public double Price_Netto { get; set; }
         public double Price_Brutto { get; set; }
         public double VAT { get; set; }
+        public string VAT_String { get; set; }
         // można dodać walute i inne parametry
 
-        public Goods(string product_Name, string product_Code, string description, double price_Netto, double price_Brutto, double vAT)
+        public Goods(string product_Name, string product_Code, string description,
+            double price_Netto, double price_Brutto, double vAT, string _vAT_String)
         {
             Product_Name = product_Name;
             Product_Code = product_Code;
@@ -28,6 +30,12 @@ namespace Projekt_faktury_WPF.Models
             Price_Netto = price_Netto;
             Price_Brutto = price_Brutto;
             VAT = vAT;
+            VAT_String = _vAT_String;
+        }
+
+        public override string ToString()
+        {
+            return $"{Product_Name}";
         }
     }
 }

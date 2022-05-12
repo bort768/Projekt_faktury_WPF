@@ -84,7 +84,7 @@
                              Foreground="White"
                              FontSize="14"
                              Style="{StaticResource RadioButtonStyle}"
-                             Command="{Binding AddGoodsCommand}"/>
+                             Command="{Binding InvoiceCommand}"/>
 
                 <RadioButton Content="Faktura Zakup"
                              Height="50"

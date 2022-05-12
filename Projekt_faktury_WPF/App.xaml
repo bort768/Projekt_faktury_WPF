@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="Style/TextBoxStyle.xaml"/>
                 <ResourceDictionary Source="Style/ButtonStyle.xaml"/>
                 <ResourceDictionary Source="Style/TextBoxStyle_V2.xaml"/>
+                <ResourceDictionary Source="Style/ButtonRedStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:BossDataViewModel}">
@@ -32,6 +33,10 @@
 
             <DataTemplate DataType="{x:Type viewModel:AddGoodsViewModel}">
                 <view:AddGoodsView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:InvoiceViewModel}">
+                <view:InvoiceView/>
             </DataTemplate>
         </ResourceDictionary>
 

@@ -15,7 +15,7 @@ namespace Projekt_faktury_WPF.ViewModels
         public CommandBase BankAccountCommand { get; set; }
         public CommandBase KontrahenciCommand { get; set; }
         public CommandBase AddGoodsCommand { get; set; }
-
+        public CommandBase InvoiceCommand { get; set; }
 
         //public ViewModelBase CurrrentViewModel { get; }
 
@@ -24,6 +24,7 @@ namespace Projekt_faktury_WPF.ViewModels
         public BankAccountViewModel BankAccountViewModel { get; }
         public KonthrahentViewModel KonthrahentViewModel { get; }
         public AddGoodsViewModel AddGoodsViewModel { get; }
+        public InvoiceViewModel InvoiceViewModel { get; }
 
         private object _currentView;
 
@@ -45,6 +46,7 @@ namespace Projekt_faktury_WPF.ViewModels
             BankAccountViewModel = new BankAccountViewModel();
             KonthrahentViewModel = new KonthrahentViewModel();
             AddGoodsViewModel = new AddGoodsViewModel();
+            InvoiceViewModel = new InvoiceViewModel();
 
             CurrentView = MakeBussinesViewModel;
 
@@ -72,8 +74,11 @@ namespace Projekt_faktury_WPF.ViewModels
             { 
                 CurrentView = AddGoodsViewModel; 
             });
-            
 
+            InvoiceCommand = new CommandBase(r =>
+            {
+                CurrentView = InvoiceViewModel;
+            });
 
         }
     }

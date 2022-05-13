@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="Style/ButtonStyle.xaml"/>
                 <ResourceDictionary Source="Style/TextBoxStyle_V2.xaml"/>
                 <ResourceDictionary Source="Style/ButtonRedStyle.xaml"/>
+                <ResourceDictionary Source="Style/ListViewStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:BossDataViewModel}">

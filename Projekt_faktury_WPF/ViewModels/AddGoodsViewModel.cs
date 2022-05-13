@@ -230,17 +230,29 @@ namespace Projekt_faktury_WPF.ViewModels
             Vat_Combobox.Add(Vat_Helper.VAT_3_String);    
             Vat_Combobox.Add(Vat_Helper.VAT_0_String);
 
+            LastVisetedGoods = new();
+
+            //Hardcode dane
+
+            
+
             if (firma.goods != null)
             {
                 foreach (var Goods_Combobox in firma.goods)
                 {
-                    LastVisetedGoods.Add(Product_Name);
+                    LastVisetedGoods.Add(Goods_Combobox.ToString());
                 }
             }
             else
             {
                 firma.goods = new();
+                firma.goods.Add(new Goods("Cum", "23","Tak", 23, 28.29, Vat_Helper.VAT_23, Vat_Helper.VAT_23_String));
+                firma.goods.Add(new Goods("CumZone", "78","Tak", 40, 49.2, Vat_Helper.VAT_23, Vat_Helper.VAT_23_String));
+                firma.goods.Add(new Goods("CumYami", "69","Tak", 100, 123, Vat_Helper.VAT_23, Vat_Helper.VAT_23_String));
             }
+
+
+
 
             DeleteGoodsCommand = new CommandBase(r =>
             {

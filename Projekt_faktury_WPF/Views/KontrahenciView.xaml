@@ -261,7 +261,7 @@
 
                             <TextBlock Margin="5,0,0,0"
                            Text="Nazwa Konta"
-                           FontSize="22"
+                           FontSize="20"
                            Foreground="White"
                            VerticalAlignment="Center"/>
                             <TextBox Margin="5,0,0,0"
@@ -269,8 +269,8 @@
                                      VerticalAlignment="Center"
                                      Style="{StaticResource flatTextBox}"/>
 
-                            <TextBlock Text="Numer konta"
-                                       FontSize="22"
+                            <TextBlock Text="Numer Konta"
+                                       FontSize="20"
                                        Foreground="White"
                                        VerticalAlignment="Center"
                                        Margin="5,0,0,0"/>
@@ -295,31 +295,9 @@
                     Content="Submit"
                     Foreground="White"
                     FontSize="14" Cursor="Hand"
-                    Command="{Binding SubmitKontrahent}">
+                    Command="{Binding SubmitKontrahent}"
+                    Style="{StaticResource Button_Green }">
 
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="#FF372F46"/>
-                            <Setter Property="Cursor" Value="Hand"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#FF347F46"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Width="100"
-                                Height="25"
-                                CornerRadius="12"
-                                Background="{TemplateBinding Background}">
-                                <ContentPresenter VerticalAlignment="Center"
-                                              HorizontalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
 
                 </Button>
 

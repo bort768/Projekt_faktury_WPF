@@ -22,11 +22,30 @@ namespace Projekt_faktury_WPF.ViewModels
 
         public static int Invoice_Number = 1;
 
+        private bool _isSelected;
+        public bool IsSelected
+        {
+            get
+            {
+                return _isSelected;
+            }
+            set
+            {
+                _isSelected = value;
+                var SelectedItem = from x in List_Of_Added_Goods where(x.IsSelected == true) select x;
+                Selected_Goods = (Goods)SelectedItem;
+
+
+
+                OnPropertyChanged();
+            }
+        }
+
         public string Town { get; set; }
 
         private string _selected_Item;
         
-        public List<Goods> Add_Remove_Goods_List { get; set; } 
+        public ObservableCollection<Goods> Add_Remove_Goods_List { get; set; } 
 
         public string Selected_Item
         {
@@ -77,6 +96,9 @@ namespace Projekt_faktury_WPF.ViewModels
                 OnPropertyChanged();
             } }
 
+
+
+
         public InvoiceViewModel()
         {
             if (firma.CompanyData != null)
@@ -93,10 +115,15 @@ namespace Projekt_faktury_WPF.ViewModels
             dataDostawy = DateTime.Now;
 
             List_Of_Added_Goods = new();
+            Add_Remove_Goods_List = new();
 
             if (firma.goods != null)
             {
-                Add_Remove_Goods_List = firma.goods;
+                //Add_Remove_Goods_List = firma.goods;
+                foreach (var goods in firma.goods)
+                {
+                    Add_Remove_Goods_List.Add(goods);
+                }
             }
 
 

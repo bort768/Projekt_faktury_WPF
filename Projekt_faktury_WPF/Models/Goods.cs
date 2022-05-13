@@ -9,7 +9,6 @@ namespace Projekt_faktury_WPF.Models
     public class Goods
     {
         
-
         public string Product_Name { get; set; }
         public string Product_Code { get; set; }
         public int Product_Id { get; set; }
@@ -18,6 +17,9 @@ namespace Projekt_faktury_WPF.Models
         public double Price_Brutto { get; set; }
         public double VAT { get; set; }
         public string VAT_String { get; set; }
+        public bool IsSelected { get; set; }
+        public int Quantity { get; set; }
+        public int Sum { get; set; }
         // można dodać walute i inne parametry
 
         public Goods(string product_Name, string product_Code, string description,

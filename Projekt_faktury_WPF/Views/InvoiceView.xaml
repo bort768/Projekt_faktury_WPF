@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Projekt_faktury_WPF.Views"
              xmlns:viewModel="clr-namespace:Projekt_faktury_WPF.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="720">
+             d:DesignHeight="525" d:DesignWidth="720">
     <UserControl.Resources>
         <viewModel:InvoiceViewModel x:Key="IVM"/>
     </UserControl.Resources>
@@ -16,6 +16,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
+            <RowDefinition Height="250"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
@@ -35,7 +36,7 @@
                                Grid.Column="0"
                                FontSize="20"
                                Padding="10"/>
-                </StackPanel>    
+                </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Nabywca:"
                                FontSize="15"
@@ -67,20 +68,27 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0"
-                               Text="{Binding Town}"
+                               Text="Data Wystawienia"
                                Foreground="white"
                                FontSize="15"
                                Margin="10,5,0,5"
                                VerticalAlignment="Center"/>
                     <TextBlock Grid.Row="1"
-                               Text="Data zkończenia dotawy"
+                               Text="Data zakończenia dotawy"
                                Foreground="white"
                                FontSize="15"
                                Margin="10,5,0,5"
                                VerticalAlignment="Center"/>
 
                 </Grid>
-                
+
+                <TextBlock Grid.Row="1"
+                               Text="Town"
+                               Foreground="white"
+                               FontSize="15"
+                               Margin="10,5,0,5"
+                               VerticalAlignment="Center"/>
+
                 <Grid Grid.Row="0"
                       Grid.Column="1">
                     <Grid.RowDefinitions>
@@ -95,60 +103,11 @@
                                 SelectedDate="{Binding dataWystawienia}"/>
 
                 </Grid>
-                <Grid Grid.Row="1"
-                      Grid.Column="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
 
-                    <TextBlock Text="Dodaj/Usuń Towar"
-                               Foreground="White"
-                               FontSize="15"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Left"
-                               Margin="10"/>
-
-                    <ComboBox Grid.Row="1"
-                              Padding="10"
-                              Height="30"
-                              ItemsSource="{Binding Add_Remove_Goods_List}"
-                              SelectedValue="{Binding Selected_Goods}"/>
-                </Grid>
-
-                <Grid Grid.Row="1"
-                      Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <Button VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            Width="100"
-                            Content="Delete"
-                            Foreground="White"
-                            FontSize="14" Cursor="Hand"
-                            Grid.Row="0"
-                            Style="{StaticResource Button_Red}"
-                            Command="{Binding RemoveGoodFromListCommand}"
-                            CommandParameter="{Binding Selected_Goods}"/>
-
-                    <Button VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            Width="100"
-                            Content="Submit"
-                            Foreground="White"
-                            FontSize="14" Cursor="Hand"
-                            Grid.Row="1"
-                            Style="{StaticResource Button_Green}"
-                            Command="{Binding AddGoodToListCommand}"
-                            CommandParameter="{Binding Selected_Goods}"/>
-                </Grid>
 
             </Grid>
 
-            
+
 
         </Grid>
         <Grid Grid.Row="1">
@@ -156,38 +115,112 @@
                 <RowDefinition Height="220"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            
+
             <ListView Grid.Row="0"
                   Margin="20"
                   Height="180"
                   VerticalAlignment="Top"
-                  ItemsSource="{Binding List_Of_Added_Goods}">
+                  ItemsSource="{Binding List_Of_Added_Goods}"
+                      SelectedItem="{Binding Selected_Goods}"
+                      Style="{StaticResource BetterListView}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.View>
                     <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="Goods Information">
-                        <GridViewColumn DisplayMemberBinding="{Binding Product_Name}" Header="Nazwa Produktu" Width="150"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Product_Code}" Header="Kod Produktu" Width="100"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Price_Netto}" Header="Kwota Netto" Width="150"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding VAT_String}" Header="Vat" Width="50"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Price_Brutto}" Header="Kwota Brutto" Width="150"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Product_Name}" Header="Nazwa Produktu" Width="175"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Product_Code}" Header="Kod" Width="50"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Price_Netto}" Header="Kwota Netto" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding VAT_String}" Header="Vat" Width="75"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Price_Brutto}" Header="Kwota Brutto" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Quantity}" Header="Ilość" Width="50"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Sum}" Header="Suma" Width="125"/>
                     </GridView>
                 </ListView.View>
             </ListView>
-
-            <Button VerticalAlignment="Bottom"
+            <Button Grid.Row="1"
+                    VerticalAlignment="Top"
                     HorizontalAlignment="Right"
                     Margin="0,0,20,0"
                     Width="100"
-                    Content="Submit"
+                    Content="Wystaw"
                     Foreground="White"
                     FontSize="14" Cursor="Hand"
-                    Grid.Row="1"
                     Style="{StaticResource Button_Green}"
-                    Command="{Binding SubmitInvoiceCommand}">
-                    
-
-            </Button>
+                    Command="{Binding SubmitInvoiceCommand}"/>
         </Grid>
-        
-        
+        <Grid Grid.Row="2">
+
+            <Grid Grid.Row="1"
+                      Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Dodaj/Usuń Towar"
+                           Foreground="White"
+                           FontSize="15"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"                              
+                           Margin="10,0,0,0"/>
+
+                <ComboBox Grid.Row="1" 
+                          FontSize="15"
+                          Height="30"
+                          Margin="10,16,30,16"
+                          ItemsSource="{Binding Add_Remove_Goods_List}"
+                          SelectedItem="{Binding Selected_Goods}"
+                          SelectedValue="{Binding Selected_Goods}"/>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Ilość"
+                               Grid.Column="1"
+                               Foreground="White"
+                               FontSize="15"
+                               Margin="10,5,0,5"/>
+                    <TextBox x:Name="Pelna_nazwa"
+                             Text="{Binding Quantity, StringFormat={}, UpdateSourceTrigger=PropertyChanged}" 
+                             Margin="0 5 10 0"
+                             Width="Auto"                    
+                             Style="{StaticResource flatTextBox}"/>
+                </StackPanel>
+                <Button VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Width="100"
+                        Content="Usuń"
+                        Foreground="White"
+                        FontSize="14" Cursor="Hand"
+                            Grid.Column="2"
+                        Style="{StaticResource Button_Red}"
+                        Command="{Binding RemoveGoodFromListCommand}"
+                        CommandParameter="{Binding Selected_Goods}"/>
+
+                <Button VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Width="100"
+                            Content="Dodaj"
+                            Foreground="White"
+                            FontSize="14" Cursor="Hand"
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Style="{StaticResource Button_Green}"
+                            Command="{Binding AddGoodToListCommand}"
+                            CommandParameter="{Binding Selected_Goods}"/>
+
+
+            </Grid>
+
+
+
+        </Grid>
+
     </Grid>
 </UserControl>

@@ -150,10 +150,18 @@ namespace Projekt_faktury_WPF.ViewModels
                 _price_Netto_To_String = value;
                 try
                 {
-                    Price_Netto = Convert.ToDouble(value);
-                    AssignToVAT(_Vat_Selected_Item);
-                    Price_Brutto = Math.Round(_price_Netto * _VAT, 2);
-                    Price_Brutto_To_String = Math.Round((_price_Netto * _VAT), 2).ToString();
+                    if (Convert.ToDouble(value) > 0)
+                    {
+                        Price_Netto = Convert.ToDouble(value);
+                        AssignToVAT(_Vat_Selected_Item);
+                        Price_Brutto = Math.Round(_price_Netto * _VAT, 2);
+                        Price_Brutto_To_String = Math.Round((_price_Netto * _VAT), 2).ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Wartość jest zerowa lub ujemna", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    
                 }
                 catch (Exception)
                 {
@@ -211,7 +219,7 @@ namespace Projekt_faktury_WPF.ViewModels
             }
             set
             {
-                _price_Brutto = value;
+                _price_Brutto = Math.Round(value, 2);
                 //Price_Brutto_To_String = value.ToString();
                 OnPropertyChanged();
             }

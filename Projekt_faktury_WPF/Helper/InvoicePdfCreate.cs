@@ -194,7 +194,7 @@ namespace Projekt_faktury_WPF.Helper
                 foreach (var item in List_Of_Goods)
                 {
                     dataTable.Rows.Add(new object[] { item.Product_Name, item.Product_Code, item.Price_Netto,
-                        item.VAT_String, item.Price_Brutto, item.Quantity, item.Sum});
+                        item.VAT_String, item.Price_Brutto, item.Quantity, Math.Round(item.Sum, 2)});
 
                     Math.Round(bill += item.Price_Brutto, 2);
 
@@ -246,6 +246,7 @@ namespace Projekt_faktury_WPF.Helper
                             billsSums[billsSums.Count - 1].ID = billsSums.Count - 1;
                             done = false;
                         }
+                        done = false;
                     }
 
                     
@@ -296,9 +297,9 @@ namespace Projekt_faktury_WPF.Helper
 
                 //Applies the header style
                 header.ApplyStyle(headerStyle);
-                cellStyle.Borders.Bottom = new PdfPen(new PdfColor(217, 217, 217), 0.70f);
+                cellStyle.Borders.Bottom = new PdfPen(new PdfColor(0, 0, 0), 0.70f);
                 cellStyle.Font = new PdfStandardFont(PdfFontFamily.TimesRoman, 8f);
-                cellStyle.TextBrush = new PdfSolidBrush(new PdfColor(131, 130, 136));
+                cellStyle.TextBrush = new PdfSolidBrush(new PdfColor(0, 0, 0)); // black
                 //cellStyle.StringFormat = new PdfStringFormat(PdfTextAlignment.Right, PdfVerticalAlignment.Middle); 
                 for (int j = 0; j < dataTable.Rows.Count; j++)
                 {
@@ -352,8 +353,8 @@ namespace Projekt_faktury_WPF.Helper
 
                 VatSumheader.ApplyStyle(amountVatheaderStyle);
 
-                PdfGridLayoutResult vatGridResult = pdfGrid.Draw(gridResult.Page, new RectangleF(new PointF(graphics.ClientSize.Width / 2, gridResult.Bounds.Bottom + 30f),
-                    new SizeF(graphics.ClientSize.Width/2, gridResult.Bounds.Bottom + 30f)), vatLayoutFormat);
+                PdfGridLayoutResult vatGridResult = pdfGrid.Draw(gridResult.Page, new RectangleF(new PointF(graphics.ClientSize.Width / 2 - 50f, gridResult.Bounds.Bottom + 30f),
+                    new SizeF(graphics.ClientSize.Width/2 + 50f, gridResult.Bounds.Right)), vatLayoutFormat);
 
 
                 //Suma kosztów
@@ -386,11 +387,72 @@ namespace Projekt_faktury_WPF.Helper
 
                 //Dodaj w parametrach walute
                 PdfTextElement amountInValueText = new($"Słownie: {AmountInWords.KwotaSlownie(bill, "PLN")}", timesRoman);
-                amountInValueText.Brush = PdfBrushes.Black; 
-                PdfLayoutResult amountInValueTextLayout = amountInValueText.Draw(page, new PointF(SumLayoutResult.Bounds.Left, SumLayoutResult.Bounds.Bottom + 14f));
+                amountInValueText.Brush = PdfBrushes.Black;
 
-                graphics.DrawLine(linePen, new PointF(pointSuma.X, amountInValueTextLayout.Bounds.Bottom + 10F), new PointF(gridResult.Bounds.Right ,amountInValueTextLayout.Bounds.Bottom + 10F));
+                //format
+                PdfStringFormat format = new PdfStringFormat();
+                format.Alignment = PdfTextAlignment.Justify;
+                format.LineAlignment = PdfVerticalAlignment.Top;
+                //format.ParagraphIndent = 15f;
+                format.WordWrap = PdfWordWrapType.Word;
 
+                amountInValueText.StringFormat = format;
+
+                PdfLayoutFormat AmountInValuelayoutFormat = new PdfLayoutFormat();
+                AmountInValuelayoutFormat.Break = PdfLayoutBreakType.FitPage;
+                AmountInValuelayoutFormat.Layout = PdfLayoutType.Paginate;
+
+
+                PdfLayoutResult amountInValueTextLayout = amountInValueText.Draw(page, new PointF(SumLayoutResult.Bounds.Left, SumLayoutResult.Bounds.Bottom + 14f), CostSumRect.Width, AmountInValuelayoutFormat);
+                //SumLayoutResult  = amountInValueText.Draw(page, new PointF(SumLayoutResult.Bounds.Left - 10f, SumLayoutResult.Bounds.Bottom + 14f));
+                
+
+                graphics.DrawLine(linePen, new PointF(pointSuma.X, amountInValueTextLayout.Bounds.Bottom + 10F),
+                    new PointF(gridResult.Bounds.Right ,amountInValueTextLayout.Bounds.Bottom + 10F));
+
+
+                #region Podpis
+                //RectangleF CostSumRect = new RectangleF(pointSuma.X, pointSuma.Y, graphics.ClientSize.Width / 2, 20);
+
+                RectangleF signature = new RectangleF(10f, amountInValueTextLayout.Bounds.Bottom + 30f,          200f, 20f);
+                RectangleF signatureWhite = new RectangleF(10f, amountInValueTextLayout.Bounds.Bottom + 30f,     200f, 75f);
+                PdfPen borderPen = new PdfPen(new PdfColor(Color.Black));
+                borderPen.Width = 1;
+
+                PdfTextElement buyerTextSignature = new PdfTextElement("Wystawił(a):", timesRoman);
+
+                SizeF buyerTextSignaturSize = timesRoman.MeasureString(buyerTextSignature.Text);
+
+                buyerTextSignature.Brush = PdfBrushes.White;
+
+                
+
+                graphics.DrawRectangle(borderPen,signatureWhite);
+                graphics.DrawRectangle(solidBrush, signature);
+
+                PdfLayoutResult buyerSignatureLayoutResult = buyerTextSignature.Draw(page,
+                    new PointF(signature.Width / 2 - buyerTextSignaturSize.Width / 2 + 10f, signature.Top + 4f));
+
+
+
+                RectangleF signatureSecond = new RectangleF(graphics.ClientSize.Width - 200f, amountInValueTextLayout.Bounds.Bottom + 30f, 200f, 20f);
+                RectangleF signatureWhiteSecond = new RectangleF(graphics.ClientSize.Width - 200f, amountInValueTextLayout.Bounds.Bottom + 30f, 200f, 75f);
+
+                PdfTextElement SellerTextSignature = new PdfTextElement("Odebrał(a):", timesRoman);
+
+                SizeF SellerTextSignatureSize = timesRoman.MeasureString(SellerTextSignature.Text);
+
+                SellerTextSignature.Brush = PdfBrushes.White;
+
+
+
+                graphics.DrawRectangle(borderPen, signatureWhiteSecond);
+                graphics.DrawRectangle(solidBrush, signatureSecond);
+
+                PdfLayoutResult SellerSignatureLayoutResult = SellerTextSignature.Draw(page,
+                    new PointF(graphics.ClientSize.Width - 200f + signatureSecond.Width/2 - SellerTextSignatureSize.Width / 2 + 10f, signatureSecond.Top + 4f));
+
+                #endregion
 
 
 

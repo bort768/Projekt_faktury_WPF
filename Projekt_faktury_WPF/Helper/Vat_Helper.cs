@@ -24,6 +24,6 @@ namespace Projekt_faktury_WPF.Helper
         public const string VAT_3_String = "VAT 3%";
         public const string VAT_0_String = "VAT 0%";
 
-
+        public static List<string> List_VAT_Strings = new List<string>{ VAT_23_String, VAT_7_String, VAT_6_String, VAT_3_String, VAT_0_String};
     }
-}
+}  

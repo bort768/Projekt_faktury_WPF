@@ -87,6 +87,14 @@ namespace Projekt_faktury_WPF.ViewModels
                 ID = firma.BossData.ID;
                 Password = firma.BossData.Password;
             }
+            else
+            {
+                firma.BossData = new BossData("Bort","OwO", "Bo", "");
+                Name = firma.BossData.Name;
+                Last_Name = firma.BossData.Last_Name;
+                ID = firma.BossData.ID;
+                Password = firma.BossData.Password;
+            }
 
             SubmitButtonCommand = new CommandBase(r =>
             {

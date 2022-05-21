@@ -166,6 +166,12 @@ namespace Projekt_faktury_WPF.ViewModels
 
         public MakeBussinesViewModel()
         {
+            //usuń pózniej
+            if (firma.CompanyData == null)
+            {
+                firma.CompanyData = new("Hurtownia Artykułów Biurowych Bort sp. z o.o", "521-427-93-09", "012346678", "Kwiatowa", "6", "36-200", "Brzozów");
+            }
+
             if (firma.CompanyData != null)
             {
                 Full_Name = firma.CompanyData.Full_Name;
@@ -176,6 +182,7 @@ namespace Projekt_faktury_WPF.ViewModels
                 ZIP_Code = firma.CompanyData.ZIP_Code;
                 Town = firma.CompanyData.Town;
             }
+            
 
             if (firma.DocumentNumbering != null)
             {

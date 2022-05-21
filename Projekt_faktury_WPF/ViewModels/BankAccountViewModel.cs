@@ -129,6 +129,10 @@ namespace Projekt_faktury_WPF.ViewModels
                Currency = firma.BankAccount.Currency;
                Value = firma.BankAccount.Value.ToString();
             }
+            else
+            {
+                firma.BankAccount = new("BANK POLSKIEJ SPÓŁDZIELCZOŚCI SA F. w Porębie", "87 1930 1334 1353 2760 2968 7558", "PLN", 740);
+            }
 
             SubmitCommandButton = new(r =>
             {

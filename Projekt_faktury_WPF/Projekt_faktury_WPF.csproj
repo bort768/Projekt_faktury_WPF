@@ -8,10 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Nowy folder\**" />
-    <EmbeddedResource Remove="Nowy folder\**" />
-    <None Remove="Nowy folder\**" />
-    <Page Remove="Nowy folder\**" />
+    <PackageReference Include="Syncfusion.Pdf.Wpf" Version="20.1.0.56" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
   </ItemGroup>
 
 </Project>

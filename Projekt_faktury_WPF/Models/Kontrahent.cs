@@ -19,5 +19,10 @@ namespace Projekt_faktury_WPF.Models
         public string BankAccount_Name { get; set; }
         public string Account_Number { get; set; }
         public CompanyData Company { get; set; }
+
+        public override string ToString()
+        {
+            return Company.Full_Name;
+        }
     }
 }

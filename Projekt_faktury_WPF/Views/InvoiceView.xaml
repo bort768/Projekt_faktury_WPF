@@ -43,18 +43,53 @@
                                Foreground="White"
                                Margin="10,5,20,5"/>
                     <ComboBox Width="230"
-                              Margin="10,0,10,0"/>
+                              Margin="10,0,10,0"
+                              ItemsSource="{Binding List_Of_Kontrahents}"
+                              SelectedValue="{Binding Selected_Kontrahent}"/>
                 </StackPanel>
-                <TextBlock Text="Dane nabywcy"
-                           Foreground="White"
-                           FontSize="15"
-                           Margin="10,5,0,5"/>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Text="Dane nabywcy"
+                                   Foreground="White"
+                                   FontSize="15"
+                                   Margin="10,5,0,5"/>
+                        
+                    </StackPanel>
+                    
+                    <TextBlock Text="{Binding Selected_Kontrahent.Company.Full_Name}"
+                                   Foreground="White"
+                                   Margin="10,5,0,5"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="NIP:"
+                               Foreground="White"
+                               Margin="10,0,0,0"/>
+                        <TextBlock Text="{Binding Selected_Kontrahent.Company.NIP}"
+                               Foreground="White"
+                               Margin="10,0,0,0"/>
+                    
+                    
+                        <TextBlock Text="{Binding Selected_Kontrahent.Company.Town}"
+                                   Foreground="White"
+                                   Margin="10,0,0,0"/>
+                        <TextBlock Text="ul."
+                                   Foreground="White"
+                                   Margin="5,0,0,0"/>
+                        <TextBlock Text="{Binding Selected_Kontrahent.Company.Street}"
+                                   Foreground="White"/>
+                        <TextBlock Text="{Binding Selected_Kontrahent.Company.House_Number}"
+                                   Foreground="White"
+                                   Margin="5,0,0,0"/>
+                        <TextBlock Text="{Binding Selected_Kontrahent.Company.ZIP_Code}"
+                                   Foreground="White"
+                                   Margin="5,0,0,0"/>
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
 
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="150"/>
+                    
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -65,44 +100,85 @@
                       Grid.Column="0">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
-                        <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0"
-                               Text="Data Wystawienia"
-                               Foreground="white"
-                               FontSize="15"
-                               Margin="10,5,0,5"
-                               VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="1"
-                               Text="Data zakończenia dotawy"
-                               Foreground="white"
-                               FontSize="15"
-                               Margin="10,5,0,5"
-                               VerticalAlignment="Center"/>
-
-                </Grid>
-
-                <TextBlock Grid.Row="1"
-                               Text="Town"
-                               Foreground="white"
-                               FontSize="15"
-                               Margin="10,5,0,5"
-                               VerticalAlignment="Center"/>
-
-                <Grid Grid.Row="0"
-                      Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Text="Data Wystawienia"
+                                   Foreground="white"
+                                   FontSize="15"
+                                   Margin="10,5,0,5"
+                                   VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="1"
+                                   Text="Data zakończenia dotawy"
+                                   Foreground="white"
+                                   FontSize="15"
+                                   Margin="10,5,0,5"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                    
+                    <Grid   Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <DatePicker Grid.Row="0"
                                 Margin="0,5,0,5"
-                                SelectedDate="{Binding dataDostawy}"/>
+                                SelectedDate="{Binding DataWystawienia}"/>
                     <DatePicker Grid.Row="1"
+                                
                                 Margin="0,5,0,5"
-                                SelectedDate="{Binding dataWystawienia}"/>
+                                SelectedDate="{Binding DataDostawy}"
+                                />
 
                 </Grid>
+                </Grid>
+                
+
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Dane Sprzedawcy"
+                                   Foreground="White"
+                                   FontSize="15"
+                                   Margin="10,5,0,5"/>
+
+                    <TextBlock Text="{Binding companyData.Full_Name}"
+                                   Foreground="White"
+                                   Margin="10,5,0,5"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="NIP:"
+                               Foreground="White"
+                               Margin="10,0,0,0"/>
+                        <TextBlock Text="{Binding companyData.NIP}"
+                                   Foreground="White"
+                                   Margin="10,0,0,0"/>
+
+
+                        <TextBlock Text="{Binding companyData.Town}"
+                                   Foreground="White"
+                                   Margin="10,0,0,0"/>
+                        <TextBlock Text="ul."
+                                   Foreground="White"
+                                   Margin="5,0,0,0"/>
+                        <TextBlock Text="{Binding companyData.Street}"
+                                   Foreground="White"/>
+                        <TextBlock Text="{Binding companyData.House_Number}"
+                                   Foreground="White"
+                                   Margin="5,0,0,0"/>
+                        
+                        <TextBlock Text="{Binding companyData.ZIP_Code}"
+                                   Foreground="White"
+                                   Margin="5,0,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+
+                
 
 
             </Grid>
@@ -154,7 +230,7 @@
         <Grid Grid.Row="2">
 
             <Grid Grid.Row="1"
-                      Grid.Column="0">
+                  Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -173,52 +249,84 @@
                            Margin="10,0,0,0"/>
 
                 <ComboBox Grid.Row="1" 
-                          FontSize="15"
+                          FontSize="12"
                           Height="30"
-                          Margin="10,16,30,16"
+                          Margin="10,0,30,0"
                           ItemsSource="{Binding Add_Remove_Goods_List}"
                           SelectedItem="{Binding Selected_Goods}"
                           SelectedValue="{Binding Selected_Goods}"/>
 
+
+
                 <StackPanel Grid.Column="1">
                     <TextBlock Text="Ilość"
+                               Foreground="White"
+                               FontSize="15"
+                               Margin="10,5,0,5"/>
+                    <TextBox x:Name="Quantity"
+                             Text="{Binding Quantity, StringFormat={}, UpdateSourceTrigger=PropertyChanged}" 
+                             Margin="10 0 0 0"
+                             Width="100" 
+                             HorizontalAlignment="left"
+                             Style="{StaticResource flatTextBox}" InputScope="Number"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1"
+                            Grid.Row="1">
+                    <TextBlock Text="Cena"
                                Grid.Column="1"
                                Foreground="White"
                                FontSize="15"
                                Margin="10,5,0,5"/>
-                    <TextBox x:Name="Pelna_nazwa"
-                             Text="{Binding Quantity, StringFormat={}, UpdateSourceTrigger=PropertyChanged}" 
-                             Margin="0 5 10 0"
-                             Width="Auto"                    
-                             Style="{StaticResource flatTextBox}"/>
+                    <TextBox x:Name="Qua"
+                             Text="{Binding Selected_Goods.Price_Netto, StringFormat={}, UpdateSourceTrigger=PropertyChanged}" 
+                             Margin="10 0 10 0"
+                             Width="150" 
+                             HorizontalAlignment="left"
+                             Style="{StaticResource flatTextBox}" InputScope="Number"/>
                 </StackPanel>
+
+
+
                 <Button VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
+                        HorizontalAlignment="Left"
                         Width="100"
                         Content="Usuń"
                         Foreground="White"
                         FontSize="14" Cursor="Hand"
-                            Grid.Column="2"
+                        Grid.Column="2"
                         Style="{StaticResource Button_Red}"
                         Command="{Binding RemoveGoodFromListCommand}"
-                        CommandParameter="{Binding Selected_Goods}"/>
+                        CommandParameter="{Binding Selected_Goods}" 
+                        Margin="10,0,0,0"/>
 
                 <Button VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            Width="100"
-                            Content="Dodaj"
-                            Foreground="White"
-                            FontSize="14" Cursor="Hand"
-                            Grid.Row="1"
-                            Grid.Column="2"
-                            Style="{StaticResource Button_Green}"
-                            Command="{Binding AddGoodToListCommand}"
-                            CommandParameter="{Binding Selected_Goods}"/>
+                        HorizontalAlignment="Left"
+                        Width="100"
+                        Content="Edytuj"
+                        Foreground="White"
+                        FontSize="14" Cursor="Hand"
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Style="{StaticResource Button_Green}"
+                        Command="{Binding EditGoodToListCommand}"
+                        CommandParameter="{Binding Selected_Goods}" 
+                        Margin="10,0,0,0"/>
 
+                <Button VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Width="100"
+                        Content="Dodaj"
+                        Foreground="White"
+                        FontSize="14" Cursor="Hand"
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Style="{StaticResource Button_Green}"
+                        Command="{Binding AddGoodToListCommand}"
+                        CommandParameter="{Binding Selected_Goods}" 
+                        Margin="130,0,0,0"/>
 
             </Grid>
-
-
 
         </Grid>
 

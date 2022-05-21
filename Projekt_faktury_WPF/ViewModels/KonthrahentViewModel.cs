@@ -215,6 +215,14 @@ namespace Projekt_faktury_WPF.ViewModels
             else
             {
                 listaDoCombobox = new();
+
+                firma.kontrahents = new();
+                firma.kontrahents.Add(new Kontrahent("BPK Oddział III w Brzozowie", "15 0011 0018 9123 3456 4567 8912",
+                    new CompanyData("Dom Towarowy „KROS” SA", "117-00-88-765", "986674453", "Brzozowska", "56", "36-200", "Brzozów")));
+
+                firma.kontrahents.Add(new Kontrahent("BT Oddział w Brzozowie", "19 0000 1245 6778 9189 1223 3456",
+                    new CompanyData("Dom Handlowy „Mrówka” sp. z.o.o.", "823 12 20 711", "74185296", "Obwodowa", "2", "36-200", "Brzozów"))); 
+
             }
           
                 
@@ -257,6 +265,7 @@ namespace Projekt_faktury_WPF.ViewModels
                 MessageBox.Show("Dane nie zostały usunięte", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            //To do naprawić to :) Kiedyś
             else if (firma.kontrahents.Contains(kontrahent))
             {
                 firma.kontrahents.Remove(kontrahent);

@@ -152,7 +152,7 @@ namespace Projekt_faktury_WPF.ViewModels
                 {
                     Price_Netto = Convert.ToDouble(value);
                     AssignToVAT(_Vat_Selected_Item);
-                    Price_Brutto = _price_Netto * _VAT;
+                    Price_Brutto = Math.Round(_price_Netto * _VAT, 2);
                     Price_Brutto_To_String = Math.Round((_price_Netto * _VAT), 2).ToString();
                 }
                 catch (Exception)
@@ -246,9 +246,9 @@ namespace Projekt_faktury_WPF.ViewModels
             else
             {
                 firma.goods = new();
-                firma.goods.Add(new Goods("Cum", "23","Tak", 23, 28.29, Vat_Helper.VAT_23, Vat_Helper.VAT_23_String));
-                firma.goods.Add(new Goods("CumZone", "78","Tak", 40, 49.2, Vat_Helper.VAT_23, Vat_Helper.VAT_23_String));
-                firma.goods.Add(new Goods("CumYami", "69","Tak", 100, 123, Vat_Helper.VAT_23, Vat_Helper.VAT_23_String));
+                firma.goods.Add(new Goods("Produkt", "23","Tak", 23, 28.29, Vat_Helper.VAT_23, Vat_Helper.VAT_23_String));
+                firma.goods.Add(new Goods("Taśma", "78","Tak", 40, 49.2, Vat_Helper.VAT_23, Vat_Helper.VAT_23_String));
+                firma.goods.Add(new Goods("UwU Shrek UwU", "69","Tak", 100, 123, Vat_Helper.VAT_23, Vat_Helper.VAT_23_String));
             }
 
 
@@ -288,6 +288,10 @@ namespace Projekt_faktury_WPF.ViewModels
             Price_Netto = firma.goods[index].Price_Netto;
             Price_Brutto = firma.goods[index].Price_Brutto;
             Product_ID = firma.goods[index].Product_Id;
+
+            Price_Netto_To_String = Price_Netto.ToString();
+
+
         }
 
         private void AssignToVAT(string value)
